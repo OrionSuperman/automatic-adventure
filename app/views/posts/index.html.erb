@@ -1,20 +1,21 @@
-<a href="/posts/index">Logout</a>
+<a href="/users/logout">Logout</a>
 <h3>Hi <%= session[:user_name] %></h3>
 <p><form action="/posts" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="text" name="post[content]">
+    <input type="text" name="content">
     <input type="submit" value="Idea!">
   </form></p>
-<% if @post %>
-  <% @post.each do |p| %>
-    <p>
-      <a href="/post/<%= p.user.id %>"><%= p.user.name %></a> says:
-      <textarea><%= p.content %></textarea></p>
+<% if @posts %>
+  <% @posts.each do |p| %>
+      <p><a href="/users/<%= p.user.id %>"><%= p.user.name %></a> says: <%= p.content %></p>
       <form action="/likes" method="post">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="hidden" name="like[post_id]" value="<%= p.id %>">
+        <input type="hidden" name="post_id" value="<%= p.id %>">
         <input type="submit" value="Like">
       </form>
-    <p><a href="/post/<%= p.id %>"><%= p.likes.count %> people</a> like this.</p>
+    <p><a href="/posts/<%= p.id %>"><%= p.likes.count %> people</a> like this.</p>
+    <% if session[:user_id] == p.user.id %>
+      <a href="/posts/<%= p.id %>" data-method="delete">Delete your post</a>
+    <% end %>
   <% end %>
 <% end %>

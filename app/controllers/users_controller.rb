@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
   end
 
   def create
@@ -15,6 +14,7 @@ class UsersController < ApplicationController
       session[:user_name] = user.name
       redirect_to "/users/#{user.id}"
     else
+      flash[:errors] = user.errors.full_messages
       redirect_to "/users/new"
     end
   end
@@ -34,12 +34,15 @@ class UsersController < ApplicationController
 
   def login
     user = User.find_by_email(params[:email])
+    puts '*' *100
+    puts user
+    puts user.authenticate(params[:password])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       session[:user_name] = user.name
       redirect_to '/users/'+ (user.id).to_s
     else
-      flash[:error] = 'Invalid Email/Password'
+      flash[:errors] = ['Invalid Email/Password on login']
       redirect_to '/users/new'
     end
   end

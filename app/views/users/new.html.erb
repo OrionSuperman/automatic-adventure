@@ -31,16 +31,22 @@
 <fieldset>
   <legend>Login</legend>
   <form action="/users/login" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <table>
       <tr>
         <td>Email:</td>
-        <td><input type="text" name="user[email]"></td>
+        <td><input type="text" name="email"></td>
       </tr>
       <tr>
         <td>Password:</td>
-        <td><input type="text" name="user[password]"></td>
+        <td><input type="password" name="password"></td>
       </tr>
     </table>
     <input type="submit" value="Login">
   </form>
 </fieldset>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <%= e %>
+  <% end %>
+<% end %>

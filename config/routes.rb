@@ -1,23 +1,19 @@
 Rails.application.routes.draw do
   root 'users#new'
 
-  post 'likes/create' => 'likes#create'
+  post 'likes' => 'likes#create'
 
   get 'posts/index' => 'posts#index'
 
-  get 'posts/:id' => 'posts#show'
-
-  post 'posts/create' => 'posts#create'
+  post 'posts' => 'posts#create'
 
   delete 'posts/delete' => 'posts#destroy'
 
   get 'users/index' => 'users#index'
 
-  get 'users/:id' => 'users#show'
+  get 'users/new' => 'users#new'
 
   post 'users/create' => 'users#create'
-
-  get 'users/new' => 'users#new'
 
   patch 'users/update' => 'users#update'
 
@@ -25,6 +21,15 @@ Rails.application.routes.draw do
 
   delete 'users/destroy' => 'users#destroy'
 
+  post 'users/login' => 'users#login'
+
+  get 'users/logout' => 'users#logout'
+
+  get 'posts/:id' => 'posts#show'
+
+  delete 'posts/:id' => 'posts#destroy'
+
+  get 'users/:id' => 'users#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
+    # render :json => @post
   end
 
   def create
@@ -12,13 +13,15 @@ class PostsController < ApplicationController
   	post = Post.new(content: params[:content], user: user)
   	if post.valid?
   		post.save
-  		redirect_to "/users/#{session[:user_id]}"
+  		redirect_to "/posts/index"
   	else
-  		redirect_to "/users/#{session[:user_id]}"
+  		redirect_to "/posts/index"
   	end
   end
 
   def destroy
+    Post.find(params[:id]).destroy
+    redirect_to "/posts/index"
   end
 
 end
