@@ -1,2 +1,17 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<a href="/posts/index">Create a Post</a> | <a href="/posts/index">Logout</a>
+<p><a href="/post/<%= p.user.id %>"><%= @post.user.name %></a> says:</p>
+<p><%= @post.content %></p>
+
+<h3>People who liked this post</h3>
+<table>
+  <tr>
+    <th>Alias</th>
+    <th>Name</th>
+  </tr>
+  <% @posts.users_liked.each do |like| %>
+  <tr>
+    <td><a href="/users/<%= like.id %>"><%= like.alias %></a></td>
+    <td><%= like.name %></td>
+  </tr>
+  <% end %>
+</table>
