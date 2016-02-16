@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'users#new'
+
   get 'likes/create'
 
   get 'posts/index'
