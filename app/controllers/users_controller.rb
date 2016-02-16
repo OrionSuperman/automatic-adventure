@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     if user.valid?
       user.save
       session[:user_id] = user.id
+      session[:user_name] = user.name
       redirect_to "/users/#{user.id}"
     else
       redirect_to "/users/new"
@@ -31,8 +32,21 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def login
+    user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      session[:user_name] = user.name
+      redirect_to '/users/'+ (user.id).to_s
+    else
+      flash[:error] = 'Invalid Email/Password'
+      redirect_to '/users/new'
+    end
+  end
+
   def logout
     session[:user_id] = nil
+    session[:user_name] = nil
     redirect_to '/'
   end
   private

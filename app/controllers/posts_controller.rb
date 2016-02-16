@@ -8,7 +8,8 @@ class PostsController < ApplicationController
   end
 
   def create
-  	post = Post.new(post_params)
+  	user= User.find(session[:user_id])
+  	post = Post.new(content: params[:content], user: user)
   	if post.valid?
   		post.save
   		redirect_to "/users/#{session[:user_id]}"
@@ -19,8 +20,5 @@ class PostsController < ApplicationController
 
   def destroy
   end
-  private
-  def post_params
-    params.require(:post).permit(:content, :user)
-  end
+
 end
