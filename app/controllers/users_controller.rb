@@ -46,6 +46,7 @@ class UsersController < ApplicationController
 
   def logout
     session[:user_id] = nil
+    session[:user_name] = nil
     redirect_to '/'
   end
   private
