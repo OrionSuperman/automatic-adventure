@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   root 'users#new'
 
-  post 'likes/create' => 'likes#create'
+  post 'likes/' => 'likes#create'
 
   get 'posts/index' => 'posts#index'
 
   get 'posts/:id' => 'posts#show'
 
-  post 'posts/create' => 'posts#create'
+  post 'posts/' => 'posts#create'
 
   delete 'posts/delete' => 'posts#destroy'
 

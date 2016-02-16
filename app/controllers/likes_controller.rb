@@ -5,10 +5,10 @@ class LikesController < ApplicationController
   	like = Like.new(user: user, post: post)
   	if like.valid?
   		like.save
-  		redirect_to "/posts"
+  		redirect_to "/posts/index"
   	else
   		flash[:errors] = "I don't know what went wrong"
-  		redirect_to "/posts"
+  		redirect_to "/posts/index"
   	end
   end
 end
