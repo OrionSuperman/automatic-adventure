@@ -1,2 +1,46 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Welcome!</h1>
+<fieldset>
+  <legend>Register</legend>
+  <form action="/users/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" name="user[name]"></td>
+      </tr>
+      <tr>
+        <td>Alias:</td>
+        <td><input type="text" name="user[alias]"></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="text" name="user[email]"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="text" name="user[password]"></td>
+      </tr>
+      <tr>
+        <td>Password Confirmation:</td>
+        <td><input type="text" name="user[password_confirmation]"></td>
+      </tr>
+    </table>
+    <input type="submit" value="Create">
+  </form>
+</fieldset>
+<fieldset>
+  <legend>Login</legend>
+  <form action="/users/login" method="post">
+    <table>
+      <tr>
+        <td>Email:</td>
+        <td><input type="text" name="user[email]"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="text" name="user[password]"></td>
+      </tr>
+    </table>
+    <input type="submit" value="Login">
+  </form>
+</fieldset>

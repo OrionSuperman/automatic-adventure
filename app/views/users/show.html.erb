@@ -1,2 +1,19 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<a href="/posts/index">Create a Post</a> | <a href="/posts/index">Logout</a>
+
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td>Alias:</td>
+    <td><%= @user.alias %></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><%= @user.email %></td>
+  </tr>
+</table>
+<hr>
+<h4>Total Number of Posts: <%= @user.posts.count %></h4>
+<h4>Total Number of Likes: <%= @user.likes.count %></h4>
