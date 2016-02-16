@@ -1,12 +1,14 @@
 class LikesController < ApplicationController
   def create
-  	like = Like.new(like_params)
+  	user = User.find(session[:user_id])
+  	post = Post.find(params[:post_id])
+  	like = Like.new(user: user, post: post)
   	if like.valid?
   		like.save
   		redirect_to "/posts"
-  end
-  private
-  def like_params
-    params.require(:like).permit(:user, :post)
+  	else
+  		flash[:errors] = "I don't know what went wrong"
+  		redirect_to "/posts"
+  	end
   end
 end
