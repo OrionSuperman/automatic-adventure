@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       session[:user_name] = user.name
       redirect_to '/users/'+ (user.id).to_s
     else
-      flash[:errors] = ['Invalid Email/Password on login']
+      flash[:errors] = ['Invalid Email/Password']
       redirect_to '/users/new'
     end
   end
