@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-  	@posts = Post.all
+  	@posts = Post.find_by_sql("SELECT posts.*, COUNT(likes.post_id) AS c FROM posts, likes WHERE likes.post_id = posts.id GROUP BY posts.id ORDER BY c DESC")
   end
 
   def show
